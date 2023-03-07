@@ -20,8 +20,4 @@
         width: 358px;
         margin: 30px 36px 0;
     }
-
-    .popup__contact-subline:focus {
-        outline: none;
-    }
 }

@@ -15,12 +15,11 @@
 }
 
 @media screen and (min-width: 1280px) {
-        .elements {
+    .elements {
         grid-template-columns: 1fr 1fr 1fr;
         justify-items: center;
         gap: 17px;
         max-width: 880px;
-        margin: 0 auto;
         padding: 51px 19px 0;
     }
 }

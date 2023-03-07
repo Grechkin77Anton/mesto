@@ -14,4 +14,4 @@
 * Методология БЭМ (Nested)
 
 **Ссылка на проект**  
-https://grechkin77anton.github.io/mesto/
+https://grechkin77anton.github.io/mesto/index.html

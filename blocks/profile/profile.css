@@ -7,7 +7,6 @@
 
 @media screen and (min-width: 1280px) {
     .profile {
-        padding: 42px 19px 0;
         margin: 0 auto;
         display: grid;
         width: 880px;
