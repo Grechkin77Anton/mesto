@@ -11,6 +11,6 @@
         display: grid;
         width: 880px;
         grid-auto-flow: column;
-        grid-template-columns: 120px 1fr 150px
+        grid-template-columns: 120px 1fr 150px;
     }
 }
