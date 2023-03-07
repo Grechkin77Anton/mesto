@@ -1,0 +1,22 @@
+.popup__author {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    margin: 0 22px;
+    padding: 0 0 13px;
+    width: 238px;
+    border: 0;
+    color: #000000;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+.popup__author:focus {
+    outline: none
+}
+
+@media screen and (min-width: 768px) {
+    .popup__author {
+        width: 358px;
+        margin: 0 36px;
+    }
+}

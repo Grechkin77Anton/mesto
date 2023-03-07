@@ -1,0 +1,18 @@
+.profile__edit-button {
+    padding: 5px;
+    border: 1px solid #FFFFFF;
+    transform: translate(113px, -49px);
+}
+
+.profile__edit-button:hover {
+    opacity: 0.6;
+}
+
+@media screen and (min-width: 1280px) {
+    .profile__edit-button {
+        padding: 5px;
+        border: 1px solid #FFFFFF;
+        position: static;
+        transform: translate(-115px, -15px);
+    }
+}
