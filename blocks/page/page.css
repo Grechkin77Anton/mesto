@@ -9,4 +9,6 @@
     -moz-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
     color: #FFFFFF;
+    min-height: 100vh;
+    background-color: #000000;
 }
