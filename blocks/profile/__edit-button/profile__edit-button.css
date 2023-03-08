@@ -8,6 +8,7 @@
     height: 24px;
     border: 1px solid #FFFFFF;
     transform: translate(113px, -49px);
+    cursor: pointer;
 }
 
 .profile__edit-button:hover {
