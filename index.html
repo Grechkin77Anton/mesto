@@ -15,52 +15,52 @@
                 <section class="profile">
                     <img class="profile__avatar" src="./images/kusto.jpg" alt="Аватар на странице">
                     <div class="profile-info">  
-                        <p class="profile-info__author">Жак-Ив Кусто</p>
+                        <h1 class="profile-info__author">Жак-Ив Кусто</h1>
                         <p class="profile-info__description">Исследователь океана</p>
                     </div>
-                    <input type="image" class="profile__edit-button" src="./images/pen-icon.svg" alt="Кнопка изменения информации профиля">
-                    <input type="image" class="profile__add-button" src="./images/add.svg" alt="Кнопка добавления информации профиля" >
+                    <button type="button" class="profile__edit-button"></button>
+                    <button type="button" class="profile__add-button"></button>
                 </section>
                 <section class="elements">
                     <article class="element">
                         <img class="element__photo" src="./images/karachaevsk.jpg" alt="карачаевск">
                         <div class="element__reaction">
-                          <p class="element__text">Карачаевск</p>
+                          <h2 class="element__text">Карачаевск</h2>
                           <button type="button" class="element__like"></button>
                         </div>
                     </article>
                     <article class="element">
                         <img class="element__photo" src="./images/elbrus.jpg" alt="гора Эльбрус">
                         <div class="element__reaction">
-                          <p class="element__text">Гора Эльбрус</p>
+                          <h2 class="element__text">Гора Эльбрус</h2>
                           <button type="button" class="element__like"></button>
                         </div>
                     </article>
                     <article class="element">
                         <img class="element__photo" src="./images/dombay.jpg" alt="Домбай">
                         <div class="element__reaction">
-                          <p class="element__text">Домбай</p>
+                          <h2 class="element__text">Домбай</h2>
                           <button type="button" class="element__like"></button>
                         </div>
                     </article>
                     <article class="element">
                         <img class="element__photo" src="./images/elbrus.jpg" alt="гора Эльбрус">
                         <div class="element__reaction">
-                          <p class="element__text">Гора Эльбрус</p>
+                          <h2 class="element__text">Гора Эльбрус</h2>
                           <button type="button" class="element__like"></button>
                         </div>
                     </article>
                     <article class="element">
                         <img class="element__photo" src="./images/dombay.jpg" alt="Домбай">
                         <div class="element__reaction">
-                          <p class="element__text">Домбай</p>
+                          <h2 class="element__text">Домбай</h2>
                           <button type="button" class="element__like"></button>
                         </div>
                     </article>
                     <article class="element">
                         <img class="element__photo" src="./images/karachaevsk.jpg" alt="карачаевск">
                         <div class="element__reaction">
-                          <p class="element__text">Карачаево-Черкесия</p>
+                          <h2 class="element__text">Карачаево-Черкесия</h2>
                           <button type="button" class="element__like"></button>
                         </div>
                     </article>
@@ -70,13 +70,15 @@
                 <p class="footer__author">&copy;&nbsp;2023.Mesto Russia</p>
             </footer>
             <div class="popup">
-                <form class="popup__container">
-                    <h2 class="popup__title">Редактировать профиль</h2>
-                    <input type="text" class="popup__author">
-                    <input type="text" class="popup__description">
-                    <button type="submit" class="popup__button-save">Сохранить</button>
+                <div class="popup__form-info">
+                    <form method="POST" name="edit-form" class="popup__container">
+                        <h2 class="popup__title">Редактировать профиль</h2>
+                        <input type="text" class="popup__author">
+                        <input type="text" class="popup__description">
+                        <button type="submit" class="popup__button-save">Сохранить</button>
+                    </form>
                     <button type="button" class="popup__close"></button>
-                </form>
+                </div>
             </div>
         </div>
         <script src="./scripts/script.js"></script>
