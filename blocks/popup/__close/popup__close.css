@@ -7,20 +7,18 @@
     border: none;
     background-color: transparent;
     top: -12%;
-    left: 93%;
+    right: 0%;
     cursor: pointer;
 }
 
 .popup__close:hover {
-    opacity: 0.8;
+    opacity: 0.6;
 }
 
 @media screen and (min-width: 768px) {
     .popup__close {
-        background-image: url(../../../images/close-Icon.svg);
         width: 32px;
         height: 32px;
-        top: -12%;
-        left: 102%;
+        right: -8%;
     }
 }

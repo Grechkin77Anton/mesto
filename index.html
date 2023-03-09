@@ -73,9 +73,11 @@
                 <div class="popup__form-info">
                     <form method="POST" name="edit-form" class="popup__container">
                         <h2 class="popup__title">Редактировать профиль</h2>
-                        <input type="text" class="popup__author">
-                        <input type="text" class="popup__description">
-                        <button type="submit" class="popup__button-save">Сохранить</button>
+                        <div class="popup__inputs">
+                            <input type="text" class="popup__input" name="title" id="title" placeholder="Имя" required>
+                            <input type="text" class="popup__input" name="description" id="description" placeholder="О себе" required>
+                        </div>
+                        <button type="submit" class="popup__button-save" id="popup__button-save">Сохранить</button>
                     </form>
                     <button type="button" class="popup__close"></button>
                 </div>
