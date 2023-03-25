@@ -3,6 +3,7 @@
     padding: 28px 0 28px;
     margin: 0 auto;
     border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+    flex-shrink: 0;
 }
 
 @media screen and (min-width: 768px) {

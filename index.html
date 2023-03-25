@@ -9,7 +9,7 @@
     <body>
         <div class="page">
             <header class="header">
-                <img class="header__logo" src="./images/logo-white.svg" alt="Логотип Mesto Russia">
+                <img class="header__logo" src="./images/logo-white.svg" alt="Логотип Место Россия">
             </header>
             <main class="content">
                 <section class="profile">
@@ -21,67 +21,58 @@
                     <button type="button" class="profile__edit-button"></button>
                     <button type="button" class="profile__add-button"></button>
                 </section>
-                <section class="elements">
-                    <article class="element">
-                        <img class="element__photo" src="./images/karachaevsk.jpg" alt="карачаевск">
-                        <div class="element__reaction">
-                          <h2 class="element__text">Карачаевск</h2>
-                          <button type="button" class="element__like"></button>
-                        </div>
-                    </article>
-                    <article class="element">
-                        <img class="element__photo" src="./images/elbrus.jpg" alt="гора Эльбрус">
-                        <div class="element__reaction">
-                          <h2 class="element__text">Гора Эльбрус</h2>
-                          <button type="button" class="element__like"></button>
-                        </div>
-                    </article>
-                    <article class="element">
-                        <img class="element__photo" src="./images/dombay.jpg" alt="Домбай">
-                        <div class="element__reaction">
-                          <h2 class="element__text">Домбай</h2>
-                          <button type="button" class="element__like"></button>
-                        </div>
-                    </article>
-                    <article class="element">
-                        <img class="element__photo" src="./images/elbrus.jpg" alt="гора Эльбрус">
-                        <div class="element__reaction">
-                          <h2 class="element__text">Гора Эльбрус</h2>
-                          <button type="button" class="element__like"></button>
-                        </div>
-                    </article>
-                    <article class="element">
-                        <img class="element__photo" src="./images/dombay.jpg" alt="Домбай">
-                        <div class="element__reaction">
-                          <h2 class="element__text">Домбай</h2>
-                          <button type="button" class="element__like"></button>
-                        </div>
-                    </article>
-                    <article class="element">
-                        <img class="element__photo" src="./images/karachaevsk.jpg" alt="карачаевск">
-                        <div class="element__reaction">
-                          <h2 class="element__text">Карачаево-Черкесия</h2>
-                          <button type="button" class="element__like"></button>
-                        </div>
-                    </article>
-                </section>
+
+                <section class="elements"></section>
+
             </main>
             <footer class="footer">
                 <p class="footer__author">&copy;&nbsp;2023.Mesto Russia</p>
             </footer>
-            <div class="popup">
+            <div class="popup info-popup">
                 <div class="popup__form-info">
-                    <form method="POST" name="edit-form" class="popup__container">
+                    <form method="POST" name="edit-form" id="edit-form" class="popup__container">
                         <h2 class="popup__title">Редактировать профиль</h2>
                         <div class="popup__inputs">
                             <input type="text" class="popup__input" name="title" id="title" placeholder="Имя" required>
                             <input type="text" class="popup__input" name="description" id="description" placeholder="О себе" required>
                         </div>
-                        <button type="submit" class="popup__button-save" id="popup__button-save">Сохранить</button>
+                        <button type="submit" class="popup__button-save" id="popup__button-edit-save">Сохранить</button>
                     </form>
                     <button type="button" class="popup__close"></button>
                 </div>
             </div>
+            <div class="popup card-popup">
+                <div class="popup__form-add">
+                    <form method="POST" name="add-form" id="add-form" class="popup__container">
+                        <h2 class="popup__title">Новое место</h2>
+                        <div class="popup__inputs">
+                            <input type="text" class="popup__input" name="title" id="place-title" placeholder="Название места" required>
+                            <input type="text" class="popup__input" name="description" id="place-link" placeholder="Ссылка на фото" required>
+                        </div>
+                        <button type="submit" class="popup__button-save" id="popup__button-add-save">Сохранить</button>
+                    </form>
+                    <button type="button" class="popup__close"></button>
+                </div>
+            </div>
+
+            <div class="popup image-popup popup_openedd">
+                <div class="popup__image-container">
+                    <img class="popup__image" src="" alt=''>
+                    <p class="popup__image-title"></p>
+                    <button type="button" class="popup__close popup__close_place_image-container"></button>
+                </div>
+            </div>
+
+            <template class="elements-template" id="template">
+                <article class="element">
+                    <img class="element__photo" src="" alt="">
+                    <button type="button" class="element__remove"></button>
+                    <div class="element__reaction">
+                      <h2 class="element__text"></h2>
+                      <button type="button" class="element__like"></button>
+                    </div>
+                </article>
+            </template>
         </div>
         <script src="./scripts/script.js"></script>
     </body>
