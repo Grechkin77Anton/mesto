@@ -52,7 +52,7 @@ const initialCards = [
 initialCards.forEach(renderItem)
 
 function renderItem(item) {
-    const htmlElement = templateElements.cloneNode(true);
+  const htmlElement = templateElements.cloneNode(true);
 
     htmlElement.querySelector('.element__text').textContent = item.name;
     htmlElement.querySelector('.element__photo').src = item.link;
@@ -60,7 +60,10 @@ function renderItem(item) {
 
     setEventListener(htmlElement);
 
+    htmlElement.querySelector('.element__photo').addEventListener('click',() => showImagePopup(item))
+
     sectionElements.append(htmlElement);
+
 }
 //             Удаление карточек
 
@@ -73,7 +76,6 @@ function handleLike(event) {
   const like = event.target.closest('.element__like');
   like.classList.toggle('element__like_active');
 }
-
 
 //         Функция добавления новой карточки
 
@@ -99,12 +101,9 @@ function handleAddCard(evt) {
 //           Функция открытия попапа с картинкой
 
 function showImagePopup(item) {
-  console.log('1')
   // разбираем данные, кладём их в попап, открывает попап с картинкой
   popupImage.querySelector('.popup__image').src = item.link;
-  console.log('2')
   popupImage.querySelector('.popup__image-title').textContent = item.name;
-  console.log('3')
   popupImage.classList.add('popup_opened');
 }
 
