@@ -86,6 +86,7 @@ function showPopupAdd() {
 function showImagePopup(item) {
   // разбираем данные, кладём их в попап, открывает попап с картинкой
   popupImage.src = item.link;
+  popupImage.alt = item.name;
   popupImageTitle.textContent = item.name;
 
   openPopup(popupTypeImage);
