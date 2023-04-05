@@ -1,4 +1,5 @@
 
+const popupElements = document.querySelectorAll('.popup');
 const popupInfo = document.querySelector('.popup_type_info');
 const popupAdd = document.querySelector('.popup_type_add');
 
@@ -23,32 +24,6 @@ const addButton  = document.querySelector('.profile__add-button');
 
 const sectionElements = document.querySelector('.elements');
 const templateElements = document.querySelector('.elements-template').content;
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ]; 
 
 //         функция открытия попапа
 const openPopup = (popup) => {
@@ -66,6 +41,30 @@ closeButtons.forEach(element => {
   element.addEventListener('click', () => closePopup(popup));
 })
 
+// закрытие попапа по клику на оверлэй
+
+const closePopupByClickOnOverlay = function(event) {
+  console.log(event.target, event.currentTarget);
+  if (event.target !== event.currentTarget) {
+    return;
+  }
+  closePopup(event.currentTarget);
+}
+
+popupElements.forEach((element) => {
+ element.addEventListener('click', closePopupByClickOnOverlay);
+})
+
+//закрытие попапа на Escape
+
+// function closePopupEsc(evt) {
+//   if (evt.key === 'Escape') {
+//     const popup = document.querySelector(selector.openPopup);
+//     closePopup(popup);
+//   }
+// }
+
+
 //         открытие попапа профиля 
 function showPopupInfo() {
   nameInput.value = nameAuthor.textContent;
@@ -75,7 +74,7 @@ function showPopupInfo() {
 }
 
 //         открытие попапа добавления карточки
-function showPopupAdd() {
+function showPopupAdd(e) {
   nameNewPlace.value = null;
   linkNewPlace.value = null;
 

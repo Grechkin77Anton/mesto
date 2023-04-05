@@ -32,10 +32,10 @@
                 <div class="popup__form-info">
                     <form method="POST" name="edit-form" id="edit-form" class="popup__container">
                         <h2 class="popup__title">Редактировать профиль</h2>
-                        <div class="popup__inputs">
+                        <fieldset class="popup__inputs">
                             <input type="text" class="popup__input" name="title" id="title" placeholder="Имя" required>
                             <input type="text" class="popup__input" name="description" id="description" placeholder="О себе" required>
-                        </div>
+                        </fieldset>
                         <button type="submit" class="popup__button-save" id="popup__button-edit-save">Сохранить</button>
                     </form>
                     <button type="button" class="popup__close"></button>
@@ -45,11 +45,11 @@
                 <div class="popup__form-add">
                     <form method="POST" name="add-form" id="add-form" class="popup__container">
                         <h2 class="popup__title">Новое место</h2>
-                        <div class="popup__inputs">
+                        <fieldset class="popup__inputs">
                             <input type="text" class="popup__input" name="title" id="place-title" placeholder="Название места" required>
                             <input type="text" class="popup__input" name="description" id="place-link" placeholder="Ссылка на фото" required>
-                        </div>
-                        <button type="submit" class="popup__button-save" id="popup__button-add-save">Сохранить</button>
+                        </fieldset>
+                        <button type="submit" class="popup__button-save" id="popup__button-add-save">Создать</button>
                     </form>
                     <button type="button" class="popup__close"></button>
                 </div>
@@ -74,6 +74,8 @@
                 </article>
             </template>
         </div>
+        <script src="./scripts/cards.js"></script>
         <script src="./scripts/script.js"></script>
+        <script src="./scripts/validate.js"></script>
     </body>
 </html>
