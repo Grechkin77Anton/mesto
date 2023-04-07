@@ -11,7 +11,7 @@ const closeButtons = document.querySelectorAll('.popup__close');
 
 const formElement = document.querySelector('.popup__container');
 const formElementCard = document.querySelector('#add-form');
-const nameInput = document.querySelector('#title');
+const nameInput = document.querySelector('#name');
 const jobInput = document.querySelector('#description');
 const nameAuthor = document.querySelector('.profile-info__author');
 const jobAuthor = document.querySelector('.profile-info__description');
@@ -28,12 +28,14 @@ const templateElements = document.querySelector('.elements-template').content;
 //         функция открытия попапа
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupClickOnEsc);
 };
 
 //         функция закрытия попапа 
 
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupClickOnEsc);
 };
 
 closeButtons.forEach(element => {
@@ -44,7 +46,6 @@ closeButtons.forEach(element => {
 // закрытие попапа по клику на оверлэй
 
 const closePopupByClickOnOverlay = function(event) {
-  console.log(event.target, event.currentTarget);
   if (event.target !== event.currentTarget) {
     return;
   }
@@ -57,16 +58,16 @@ popupElements.forEach((element) => {
 
 //закрытие попапа на Escape
 
-// function closePopupEsc(evt) {
-//   if (evt.key === 'Escape') {
-//     const popup = document.querySelector(selector.openPopup);
-//     closePopup(popup);
-//   }
-// }
-
+function closePopupClickOnEsc(event) {
+  if (event.key === 'Escape') {
+    const openPopup = document.querySelector('.popup_opened');
+    closePopup(openPopup);
+  }
+}
 
 //         открытие попапа профиля 
 function showPopupInfo() {
+  // resetErrorOpenForm(handleFormProfileInfoSubmit);
   nameInput.value = nameAuthor.textContent;
   jobInput.value = jobAuthor.textContent;
 
@@ -156,6 +157,14 @@ function handleFormProfileInfoSubmit (evt) {
         jobAuthor.textContent = jobInput.value;
 
         closePopup(popupInfo);
+}
+
+// Добавление карточки при нажатии на Enter
+
+function keyHandler(evt) {
+  if (evt.key === 'Enter') {
+    handleAddCard();
+  }
 }
 
 
