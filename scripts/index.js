@@ -25,6 +25,14 @@ const addButton  = document.querySelector('.profile__add-button');
 const sectionElements = document.querySelector('.elements');
 const templateElements = document.querySelector('.elements-template').content;
 
+const formInfoElement = document.forms.editForm;
+const formAddCardElement = document.forms.addForm;
+
+const buttonForFormInfoElement = formInfoElement.querySelector('.popup__button');
+const inputListForFormInfoElement = formInfoElement.querySelectorAll('.popup__input');
+const buttonForFormAddCard = formAddCardElement.querySelector('.popup__button');
+const inputListForFormAddCard = formAddCardElement.querySelectorAll('.popup__input');
+
 //         функция открытия попапа
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
@@ -65,19 +73,34 @@ function closePopupClickOnEsc(event) {
   }
 }
 
+// Добавление карточки при нажатии на Enter
+
+function keyHandler(evt) {
+  if (evt.key === 'Enter') {
+    handleAddCard();
+  }
+}
+
+
 //         открытие попапа профиля 
 function showPopupInfo() {
-  // resetErrorOpenForm(handleFormProfileInfoSubmit);
-  nameInput.value = nameAuthor.textContent;
+  resetErrorOpenForm(formInfoElement);
+  
+  nameInput.value = nameAuthor.textContent; 
   jobInput.value = jobAuthor.textContent;
+  changeButton(inputListForFormInfoElement, buttonForFormInfoElement, configValidation.inactiveButtonClass)
 
   openPopup(popupInfo);
 }
 
 //         открытие попапа добавления карточки
 function showPopupAdd(e) {
+  resetErrorOpenForm(formAddCardElement);
+
   nameNewPlace.value = null;
   linkNewPlace.value = null;
+  
+  changeButton(inputListForFormAddCard, buttonForFormAddCard, configValidation.inactiveButtonClass )
 
   openPopup(popupAdd);
 }
@@ -158,15 +181,6 @@ function handleFormProfileInfoSubmit (evt) {
 
         closePopup(popupInfo);
 }
-
-// Добавление карточки при нажатии на Enter
-
-function keyHandler(evt) {
-  if (evt.key === 'Enter') {
-    handleAddCard();
-  }
-}
-
 
 formElement.addEventListener('submit', handleFormProfileInfoSubmit);
 formElementCard.addEventListener('submit', handleAddCard);

@@ -28,34 +28,15 @@
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__input/popup__input.css);
+@import url(../blocks/popup/__input-container/popup__input-container.css);
+@import url(../blocks/popup/__input/_invalid/popup__input_invalid.css);
 @import url(../blocks/popup/__inputs/popup__inputs.css);
+@import url(../blocks/popup/__error/_visible/popup__error_visible.css);
 @import url(../blocks/popup/__button-save/popup__button-save.css);
+@import url(../blocks/popup/__button/_disabled/popup__button_disabled.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__image-container/popup__image-container.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/_type/_image/popup_type_image.css);
 @import url(../blocks/popup/__image-title/popup__image-title.css);
 @import url(../blocks/popup/__close/_place/_image-container/popup__close_place_image-container.css);
-
-
-.popup__error_visible {
-    color: #ff0000;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 14.5px;
-    margin: 5px auto 0 35px;
-    padding: 0;
-}
-
-.popup__button_disabled {
-    border: 1px solid rgba(0, 0, 0, .2);
-    color: rgba(0, 0, 0, .5);
-    background: #e9e9e9;
-    cursor: default;
-}
-
-.popup__input_invalid {
-    border-bottom: 1px solid #ff0000;
-}
-
-

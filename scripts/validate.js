@@ -10,20 +10,20 @@ const configValidation = {
 
 enableValidation(configValidation);
 
-function enableValidation (config) {
-    const forms = Array.from(document.querySelectorAll(config.formSelector));
+function enableValidation ({formSelector, inputSelector, submitButtonSelector, ...rest}) {
+    const forms = Array.from(document.querySelectorAll(formSelector));
     forms.forEach(form => {
-        const inputs = form.querySelectorAll(config.inputSelector);
-        const button = form.querySelector(config.submitButtonSelector);
-        setEventListeners(inputs, button , config.errorSelectorTemplate, config.inactiveButtonClass, config.inputErrorClass, config.errorTextClass)
+        const inputs = form.querySelectorAll(inputSelector);
+        const button = form.querySelector(submitButtonSelector);
+        setEventListeners(inputs, button , rest);
 })
 }
 
-function setEventListeners(inputs, button, errorSelectorTemplate, inactiveButtonClass, inputErrorClass, errorTextClass) {
+function setEventListeners(inputs, button, {errorSelectorTemplate,inputErrorClass, errorTextClass, ...rest}) {
    inputs.forEach(input => {
     input.addEventListener('input', () => {
         checkInputValidity(input, errorSelectorTemplate, inputErrorClass, errorTextClass);
-        changeButton(inputs, button, inactiveButtonClass);
+        changeButton(inputs, button, rest.inactiveButtonClass);
     })
    })
 }
@@ -37,6 +37,8 @@ function checkInputValidity(input , errorSelectorTemplate, inputErrorClass, erro
     }
 }
 
+//           скрытие текста ошибок валидации
+
 function hideInputError(input,currentInputErrorContainer,inputErrorClass,errorTextClass) {
     input.classList.remove(inputErrorClass);
     currentInputErrorContainer.textContent = '';
@@ -49,6 +51,8 @@ function showInputError(input,currentInputErrorContainer,inputErrorClass,errorTe
     currentInputErrorContainer.classList.add(errorTextClass);
 }
 
+//            Изменение активности кнопки
+
 function changeButton (inputs, button, inactiveButtonClass) {
     if(hasValidityInput(inputs)) {
         disabledButton(button, inactiveButtonClass);
@@ -57,9 +61,13 @@ function changeButton (inputs, button, inactiveButtonClass) {
     }
 }
 
+//      проверка импутов на валидность
+
 function hasValidityInput(inputs) {
     return Array.from(inputs).some((input) => !input.validity.valid)
 }
+
+//                  кнопки
 
 function enableButton(button, inactiveButtonClass) {
     button.classList.remove(inactiveButtonClass);
@@ -71,11 +79,13 @@ function disabledButton(button, inactiveButtonClass) {
     button.disabled = true;
 }
 
+// функция сброса ошибок при открытии попапа
+
 function resetErrorOpenForm(form) {
-    form.querySelectorAll(configValidation.inputSelector).forEach(input => {
+    form.querySelectorAll(configValidation.inputSelector).forEach((input) => {
         const currentInputErrorContainer = document.querySelector(`#${input.id}-error`)
         if(!input.validity.valid) {
-            hideInputError(input, currentInputErrorContainer,config.inputErrorClass, config.errorTextClass)
+            hideInputError(input, currentInputErrorContainer,configValidation.inputErrorClass, configValidation.errorTextClass)
         }
     })
 }
