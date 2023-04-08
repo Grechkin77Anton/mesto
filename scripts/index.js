@@ -73,15 +73,6 @@ function closePopupClickOnEsc(event) {
   }
 }
 
-// Добавление карточки при нажатии на Enter
-
-function keyHandler(evt) {
-  if (evt.key === 'Enter') {
-    handleAddCard();
-  }
-}
-
-
 //         открытие попапа профиля 
 function showPopupInfo() {
   resetErrorOpenForm(formInfoElement);
@@ -97,8 +88,7 @@ function showPopupInfo() {
 function showPopupAdd(e) {
   resetErrorOpenForm(formAddCardElement);
 
-  nameNewPlace.value = null;
-  linkNewPlace.value = null;
+  formAddCardElement.reset();
   
   changeButton(inputListForFormAddCard, buttonForFormAddCard, configValidation.inactiveButtonClass )
 
@@ -148,8 +138,6 @@ function handleAddCard(evt) {
   sectionElements.prepend(createCard(item));
 
   closePopup(popupAdd);
-
-  sectionElements.querySelector('.element__photo').addEventListener('click',() => showImagePopup(item))
 }
 
 //             Удаление карточек
