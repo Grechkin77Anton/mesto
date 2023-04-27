@@ -1,4 +1,6 @@
-import initialCards from './cards.js';
+import initialCards from './constants.js';
+
+import Card from './card.js';
 
 
 const popupElements = document.querySelectorAll('.popup');
@@ -25,7 +27,6 @@ const editButton = document.querySelector('.profile__edit-button');
 const addButton  = document.querySelector('.profile__add-button');
 
 const sectionElements = document.querySelector('.elements');
-const templateElements = document.querySelector('.elements-template').content;
 
 const selectorTemplate = '#template';
 
@@ -101,102 +102,44 @@ function showPopupAdd(e) {
 }
 
 //           Функция открытия попапа с картинкой
-function showImagePopup(icardData) {
+function showImagePopup(item) {
   // разбираем данные, кладём их в попап, открывает попап с картинкой
-  popupImage.src = cardData.link;
-  popupImage.alt = cardData.name;
-  popupImageTitle.textContent = cardData.name;
+  popupImage.src = item.link;
+  popupImage.alt = item.name;
+  popupImageTitle.textContent = item.name;
 
   openPopup(popupTypeImage);
 }
 
 //       функция создания карточен
 
-// function createCard(item) {
-//   const htmlElement = templateElements.querySelector('.element').cloneNode(true);
+function createNewCard(element) {
+  const card = new Card(element, selectorTemplate, showImagePopup);
+  const cardElement = card.createCard();
 
-//   htmlElement.querySelector('.element__text').textContent = item.name;
-//   htmlElement.querySelector('.element__photo').src = item.link;
-//   htmlElement.querySelector('.element__photo').alt = item.name;
-
-//   setEventListener(htmlElement);
-
-//   htmlElement.querySelector('.element__photo').addEventListener('click',() => showImagePopup(item))
-//   return htmlElement;
-// }
-
-class Card {
-  constructor(cardData, selectorTemplate, showImagePopup) {
-    this._cardData = cardData;
-    this._name = cardData.name;
-    this._link = cardData.link;
-    this._selectorTemplate = selectorTemplate;
-    this._showImagePopup = showImagePopup;
-  }
-
-  _getTemplateClone() {
-    return document.querySelector(this._selectorTemplate).content.querySelector('.element').cloneNode(true);
-  }
-
-  createCard() {
-    this._cloneElement = this._getTemplateClone();
-    this._imageElement = this._cloneElement.querySelector('.element__photo');
-    this._likeIconElement = this._cloneElement.querySelector('.element__like');
-    this._removeElement = this._cloneElement.querySelector('.element__remove');
-    this._subtitle = this._cloneElement.querySelector('.element__text');
-    this._imageElement.src = this._link;
-    this._imageElement.alt = this._name;
-    this._subtitle.textContent = this._name;
-    return this._cloneElement
-  }
-
+  return cardElement;
 }
 
-
-function addCard(place, card) {
-  place.prepend(card);
+function addCard(container, card) {
+  container.prepend(card);
 }
 
 //           Создание карточек на странице из массива
 initialCards.forEach(element => {
-  const card = new Card(element, selectorTemplate, showImagePopup);
-  console.log(card);
-  addCard(sectionElements, card.createCard());
+  
+  addCard(sectionElements, createNewCard(element));
 })
 
-// function renderItem(item) {
-
-// sectionElements.append(createCard(item));
-// }
 
 //         Функция добавления новой карточки
 
-function handleAddCard() {
+function handleAddCard(evt) {
+    evt.preventDefault();
 
   const item = { name: nameNewPlace.value, link: linkNewPlace.value};
-  
-  sectionElements.prepend(createCard(item));
+  addCard(sectionElements, createNewCard(item));
 
   closePopup(popupAdd);
-}
-
-//             Удаление карточек
-
-function handleDelete (event) {
-  const card = event.target.closest('.element');
-  card.remove();
-}
-
-function handleLike(event) {
-  const like = event.target.closest('.element__like');
-  like.classList.toggle('element__like_active');
-}
-
-//            Набор функций для карточки
-
-function setEventListener(htmlElement) {
-  htmlElement.querySelector('.element__remove').addEventListener('click', handleDelete);
-  htmlElement.querySelector('.element__like').addEventListener('click', handleLike);
 }
 
 //         Функция редактирования информации профиля
