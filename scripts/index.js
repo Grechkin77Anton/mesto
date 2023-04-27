@@ -1,3 +1,5 @@
+import initialCards from './cards.js';
+
 
 const popupElements = document.querySelectorAll('.popup');
 const popupInfo = document.querySelector('.popup_type_info');
@@ -25,6 +27,8 @@ const addButton  = document.querySelector('.profile__add-button');
 const sectionElements = document.querySelector('.elements');
 const templateElements = document.querySelector('.elements-template').content;
 
+const selectorTemplate = '#template';
+
 const formInfoElement = document.forms.editForm;
 const formAddCardElement = document.forms.addForm;
 
@@ -32,6 +36,7 @@ const buttonForFormInfoElement = formInfoElement.querySelector('.popup__button')
 const inputListForFormInfoElement = formInfoElement.querySelectorAll('.popup__input');
 const buttonForFormAddCard = formAddCardElement.querySelector('.popup__button');
 const inputListForFormAddCard = formAddCardElement.querySelectorAll('.popup__input');
+
 
 //         функция открытия попапа
 const openPopup = (popup) => {
@@ -96,42 +101,77 @@ function showPopupAdd(e) {
 }
 
 //           Функция открытия попапа с картинкой
-function showImagePopup(item) {
+function showImagePopup(icardData) {
   // разбираем данные, кладём их в попап, открывает попап с картинкой
-  popupImage.src = item.link;
-  popupImage.alt = item.name;
-  popupImageTitle.textContent = item.name;
+  popupImage.src = cardData.link;
+  popupImage.alt = cardData.name;
+  popupImageTitle.textContent = cardData.name;
 
   openPopup(popupTypeImage);
 }
 
 //       функция создания карточен
 
-function createCard(item) {
-  const htmlElement = templateElements.querySelector('.element').cloneNode(true);
+// function createCard(item) {
+//   const htmlElement = templateElements.querySelector('.element').cloneNode(true);
 
-  htmlElement.querySelector('.element__text').textContent = item.name;
-  htmlElement.querySelector('.element__photo').src = item.link;
-  htmlElement.querySelector('.element__photo').alt = item.name;
+//   htmlElement.querySelector('.element__text').textContent = item.name;
+//   htmlElement.querySelector('.element__photo').src = item.link;
+//   htmlElement.querySelector('.element__photo').alt = item.name;
 
-  setEventListener(htmlElement);
+//   setEventListener(htmlElement);
 
-  htmlElement.querySelector('.element__photo').addEventListener('click',() => showImagePopup(item))
-  return htmlElement;
+//   htmlElement.querySelector('.element__photo').addEventListener('click',() => showImagePopup(item))
+//   return htmlElement;
+// }
+
+class Card {
+  constructor(cardData, selectorTemplate, showImagePopup) {
+    this._cardData = cardData;
+    this._name = cardData.name;
+    this._link = cardData.link;
+    this._selectorTemplate = selectorTemplate;
+    this._showImagePopup = showImagePopup;
+  }
+
+  _getTemplateClone() {
+    return document.querySelector(this._selectorTemplate).content.querySelector('.element').cloneNode(true);
+  }
+
+  createCard() {
+    this._cloneElement = this._getTemplateClone();
+    this._imageElement = this._cloneElement.querySelector('.element__photo');
+    this._likeIconElement = this._cloneElement.querySelector('.element__like');
+    this._removeElement = this._cloneElement.querySelector('.element__remove');
+    this._subtitle = this._cloneElement.querySelector('.element__text');
+    this._imageElement.src = this._link;
+    this._imageElement.alt = this._name;
+    this._subtitle.textContent = this._name;
+    return this._cloneElement
+  }
+
+}
+
+
+function addCard(place, card) {
+  place.prepend(card);
 }
 
 //           Создание карточек на странице из массива
-initialCards.forEach(renderItem)
+initialCards.forEach(element => {
+  const card = new Card(element, selectorTemplate, showImagePopup);
+  console.log(card);
+  addCard(sectionElements, card.createCard());
+})
 
-function renderItem(item) {
+// function renderItem(item) {
 
-sectionElements.append(createCard(item));
-}
+// sectionElements.append(createCard(item));
+// }
 
 //         Функция добавления новой карточки
 
-function handleAddCard(evt) {
-  evt.preventDefault();
+function handleAddCard() {
 
   const item = { name: nameNewPlace.value, link: linkNewPlace.value};
   
