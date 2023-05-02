@@ -92,25 +92,23 @@ function closePopupClickOnEsc(event) {
 
 //         открытие попапа профиля 
 function showPopupInfo() {
-  // resetErrorOpenForm(formInfoElement);
-  
+
+  FormPersonalDataValidator.resetErrorOpenForm();
+
   nameInput.value = nameAuthor.textContent; 
   jobInput.value = jobAuthor.textContent;
-  // changeButton(inputListForFormInfoElement, buttonForFormInfoElement, configValidation.inactiveButtonClass)
 
   openPopup(popupInfo);
 }
 
 //         открытие попапа добавления карточки
 function showPopupAdd() {
-  // resetErrorOpenForm(formAddCardElement);
-
+  FormAddCardValidator.resetErrorOpenForm();
   formAddCardElement.reset();
   
-  // changeButton(inputListForFormAddCard, buttonForFormAddCard, configValidation.inactiveButtonClass )
-
   openPopup(popupAdd);
 }
+
 
 //           Функция открытия попапа с картинкой
 function showImagePopup(item) {
@@ -187,6 +185,8 @@ class FormValidator {
     this._inputErrorClass = config.inputErrorClass;
     this._errorTextClass = config.errorTextClass;
     this._form = form;
+    this._button = form.querySelector(this._submitButtonSelector);
+    this._inputs = form.querySelectorAll(this._inputSelector);
   }
 
   
@@ -207,9 +207,9 @@ class FormValidator {
     this._button.disabled = false;
 }
 
-  _disabledButton(button) {
-    button.classList.add( this._inactiveButtonClass);
-    button.disabled = true;
+  _disabledButton( ) {
+    this._button.classList.add( this._inactiveButtonClass);
+    this._button.disabled = true;
 }
 
   _hasValidityInput() {
@@ -243,11 +243,20 @@ class FormValidator {
     })
   }
 
-  enableValidation() {
-    this._button = this._form.querySelector(this._submitButtonSelector);
-    this._inputs = this._form.querySelectorAll(this._inputSelector);
+  enableValidation() { 
     this._setEventListener();
   }
+
+  resetErrorOpenForm() {
+    this._inputs.forEach(input => {
+      const errorTextElement = this._form.querySelector(`#${input.id}-error`)
+        if(!input.validity.valid) {
+            this._hideInputError(errorTextElement, input);
+        }
+    })
+    this._disabledButton()
+}
+
 };
 
 const FormPersonalDataValidator = new FormValidator(configValidation, formInfoElement);
@@ -255,7 +264,6 @@ FormPersonalDataValidator.enableValidation();
 
 const FormAddCardValidator = new FormValidator(configValidation, formAddCardElement);
 FormAddCardValidator.enableValidation();
-
 
 
 
