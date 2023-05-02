@@ -1,14 +1,15 @@
 class Card {
-    constructor(cardData, selectorTemplate, showImagePopup) {
-      this._cardData = cardData;
-      this._name = cardData.name;
-      this._link = cardData.link;
+    constructor(item, selectorTemplate, showImagePopup) {
+      this._item = item;
+      this._name = item.name;
+      this._link = item.link;
       this._selectorTemplate = selectorTemplate;
       this._showImagePopup = showImagePopup;
     }
   
     _getTemplateClone() {
-      return document.querySelector(this._selectorTemplate).content.querySelector('.element').cloneNode(true);
+      const getClone = document.querySelector(this._selectorTemplate).content.querySelector('.element').cloneNode(true);
+      return getClone;
     }
   
     _handleLike = () => {
@@ -21,7 +22,7 @@ class Card {
     }
   
     _handleShowPopupImage = () => {
-      this._showImagePopup(this._cardData);
+      this._showImagePopup(this._item);
     }
   
     _setEventListeners() {
@@ -42,7 +43,7 @@ class Card {
       this._setEventListeners();
       return this._cloneElement;
     }
-  
+    
   }
 
   export default Card;

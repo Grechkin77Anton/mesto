@@ -39,17 +39,19 @@ function checkInputValidity(input , errorSelectorTemplate, inputErrorClass, erro
 
 //           скрытие текста ошибок валидации
 
+function showInputError(input,currentInputErrorContainer,inputErrorClass,errorTextClass) {
+    input.classList.add(inputErrorClass);
+    currentInputErrorContainer.textContent = input.validationMessage;
+    currentInputErrorContainer.classList.add(errorTextClass);
+}
+
 function hideInputError(input,currentInputErrorContainer,inputErrorClass,errorTextClass) {
     input.classList.remove(inputErrorClass);
     currentInputErrorContainer.textContent = '';
     currentInputErrorContainer.classList.remove(errorTextClass);
 }
 
-function showInputError(input,currentInputErrorContainer,inputErrorClass,errorTextClass) {
-    input.classList.add(inputErrorClass);
-    currentInputErrorContainer.textContent = input.validationMessage;
-    currentInputErrorContainer.classList.add(errorTextClass);
-}
+
 
 //            Изменение активности кнопки
 
