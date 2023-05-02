@@ -8,8 +8,7 @@ class Card {
     }
   
     _getTemplateClone() {
-      const getClone = document.querySelector(this._selectorTemplate).content.querySelector('.element').cloneNode(true);
-      return getClone;
+      return document.querySelector(this._selectorTemplate).content.querySelector('.element').cloneNode(true);
     }
   
     _handleLike = () => {
