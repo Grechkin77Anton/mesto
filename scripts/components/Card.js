@@ -1,7 +1,7 @@
 class Card {
     constructor(item, selectorTemplate, showImagePopup) {
       this._item = item;
-      this._name = item.name;
+      this._name = item.title;
       this._link = item.link;
       this._selectorTemplate = selectorTemplate;
       this._showImagePopup = showImagePopup;
