@@ -3,17 +3,17 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./pages/index.css" />
+        <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
         <title>Mesto</title>
     </head>
     <body>
         <div class="page">
             <header class="header">
-                <img class="header__logo" src="./images/logo-white.svg" alt="Логотип Место Россия">
+                <img class="header__logo" src="<%=require('./images/logo-white.svg')%>" alt="Логотип Место Россия">
             </header>
             <main class="content">
                 <section class="profile">
-                    <img class="profile__avatar" src="./images/kusto.jpg" alt="Аватар на странице">
+                    <img class="profile__avatar" src="<%=require('./images/kusto.jpg')%>" alt="Аватар на странице">
                     <div class="profile-info">  
                         <h1 class="profile-info__author">Жак-Ив Кусто</h1>
                         <p class="profile-info__description">Исследователь океана</p>
@@ -53,10 +53,10 @@
                         <form novalidate method="POST" name="addForm" id="add-form" class="popup__inputs popup__form">
 
                             <div class="popup__input-container">
-                            <input type="text" class="popup__input " name="place-title" id="place-title" placeholder="Название места" minlength="2" maxlength="30" required>
+                            <input type="text" class="popup__input " name="name" id="place-title" placeholder="Название места" minlength="2" maxlength="30" required>
                             <span id="place-title-error" class="popup__error popup__error_type_place-title"></span>
                             
-                            <input type="url" class="popup__input" name="place-link" id="place-link" placeholder="Ссылка на фото" required>
+                            <input type="url" class="popup__input" name="link" id="place-link" placeholder="Ссылка на фото" required>
                             <span id="place-link-error" class="popup__error popup__error_type_place-link"></span>
                             </div>
 
@@ -86,6 +86,6 @@
                   </article>
             </template>
         </div>
-        <script type="module" src="./scripts/index.js"></script>
+        <script type="module" src="./pages/index.js"></script>
     </body>
 </html>
