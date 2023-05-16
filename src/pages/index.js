@@ -42,28 +42,33 @@ const imagePopup = new PopupWithImage(popupImageSelector);
 imagePopup.setEventListeners()
 
 
-const section = new Section({
-  items: initialCards,
-  renderer: (element) => {
-    const card = new Card(element, selectorTemplate, imagePopup.open);
-    const cardElement = card.createCard();
-    return cardElement;
-  }
-}, containerSelector)
+
+const addCard = (cardData) => {
+  const card = new Card (cardData, selectorTemplate, imagePopup.open);
+  return card.createCard();
+}
+
+const section = new Section({ 
+  items: initialCards, 
+  renderer: (card) => { 
+    section.addItem(addCard(card));
+  } 
+}, containerSelector) 
+
 
 section.addCardFromArray();
+ 
 
-
-const popupProfile = new PopupWithForm(profilePopupSelector, (evt) => {
-  evt.preventDefault(evt);
-  userInfo.setUserInfo(popupProfile._getInputsValue());
+const popupProfile = new PopupWithForm(profilePopupSelector, (obj) => {
+  userInfo.setUserInfo({username:obj.username, description: obj.description});
   popupProfile.close()
 });
+
 
 //         открытие попапа профиля 
 function showPopupInfo() {
 
-  FormPersonalDataValidator.resetErrorOpenForm();
+  formPersonalDataValidator.resetErrorOpenForm();
   popupProfile.setInputsValue(userInfo.getUserInfo());
   
   popupProfile.open();
@@ -71,9 +76,8 @@ function showPopupInfo() {
 
 popupProfile.setEventListeners()
 
-const popupAddCard = new PopupWithForm(addCardPopupSelector, (evt) => {
-  evt.preventDefault(evt);
-  section.addItem(section.renderer(popupAddCard._getInputsValue()));
+const popupAddCard = new PopupWithForm(addCardPopupSelector, (obj) => {
+  section.renderer({name:obj.name, link: obj.link});
   popupAddCard.close();
 })
 
@@ -83,7 +87,7 @@ popupAddCard.setEventListeners();
 //         открытие попапа добавления карточки
 
 function showPopupAdd() {
-  FormAddCardValidator.resetErrorOpenForm();
+  formAddCardValidator.resetErrorOpenForm();
   formAddCardElement.reset();
   
  popupAddCard.open();
@@ -91,11 +95,11 @@ function showPopupAdd() {
 
 // Валидация форм
 
-const FormPersonalDataValidator = new FormValidator(configValidation, formInfoElement);
-FormPersonalDataValidator.enableValidation();
+const formPersonalDataValidator = new FormValidator(configValidation, formInfoElement);
+formPersonalDataValidator.enableValidation();
 
-const FormAddCardValidator = new FormValidator(configValidation, formAddCardElement);
-FormAddCardValidator.enableValidation();
+const formAddCardValidator = new FormValidator(configValidation, formAddCardElement);
+formAddCardValidator.enableValidation();
 
 
 

@@ -5,11 +5,11 @@ export default class UserInfo {
     }
 
     getUserInfo() {
-        return {title: this._profileName.textContent, description: this._profileJob.textContent}
+        return {username: this._profileName.textContent, description: this._profileJob.textContent}
     }
 
     setUserInfo(inputData) {
-        this._profileName.textContent = inputData.title;
+        this._profileName.textContent = inputData.username;
         this._profileJob.textContent = inputData.description;
     }
 }
