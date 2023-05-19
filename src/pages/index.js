@@ -5,7 +5,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/userInfo.js';
 import PopupWithForm from '../components/PopupWithForm.js';
-import './index.css';
+// import './index.css';
 
 const formElement = document.querySelector('.popup__container');
 const formElementCard = document.querySelector('#add-form');
