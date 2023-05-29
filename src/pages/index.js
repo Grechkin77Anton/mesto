@@ -7,7 +7,7 @@ import UserInfo from '../components/userInfo.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupDeleteCard from '../components/PopupDeleteCard.js';
 import Api from '../components/Api.js';
-import './index.css';
+// import './index.css';
 
 
 
@@ -108,7 +108,7 @@ const popupAddCard = new PopupWithForm(addCardPopupSelector, ({name:name , link:
 popupAddCard.setEventListeners();
 
 const section = new Section((card) => { 
-    section.addItem(addCard(card));
+    section.addAppendItems(addCard(card));
 }, containerSelector) 
  
 
@@ -120,7 +120,6 @@ const popupProfile = new PopupWithForm(profilePopupSelector, (obj) => {
 })
       .catch((error => console.error(`Ошибка редактирования профиля ${error}`)))
       .finally(() => popupProfile.resetLoadText());
-  popupProfile.close()
 });
 
 const popupEditAvatar = new PopupWithForm(popupEditAvatarSelector, (obj) => {
@@ -131,7 +130,6 @@ const popupEditAvatar = new PopupWithForm(popupEditAvatarSelector, (obj) => {
     })
     .catch((error => console.error(`Ошибка редактирования аватара профиля ${error}`)))
     .finally(() => popupEditAvatar.resetLoadText());
-  popupEditAvatar.close();
 })
 
 popupEditAvatar.setEventListeners();
@@ -161,7 +159,6 @@ popupProfile.setEventListeners()
 
 function showPopupAdd() {
   formAddCardValidator.resetErrorOpenForm();
-  formAddCardElement.reset();
   
  popupAddCard.open();
 }
@@ -177,12 +174,6 @@ formAddCardValidator.enableValidation();
 const formEditAvatarValidator = new FormValidator(configValidation, formEditAvatarElement);
 formEditAvatarValidator.enableValidation();
 
-
-
-
-formElement.addEventListener('submit', popupProfile);
-formElementCard.addEventListener('submit', popupAddCard);
-
 editButton.addEventListener('click', showPopupInfo);
 addButton.addEventListener('click', showPopupAdd);
 
@@ -193,6 +184,6 @@ Promise.all([api.getInfo(), api.getCards()])
     dataCard.forEach(item => item.myid = dataUser._id);
     userInfo.findId(dataUser._id)
     userInfo.setUserInfo({ username: dataUser.name, description: dataUser.about, avatar: dataUser.avatar});
-    section.addCardFromArray(dataCard.reverse());
+    section.addCardFromArray(dataCard);
   })
   .catch((error => console.error(`Ошибка создания начальных карточек ${error}`)))
