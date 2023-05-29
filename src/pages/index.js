@@ -7,7 +7,7 @@ import UserInfo from '../components/userInfo.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupDeleteCard from '../components/PopupDeleteCard.js';
 import Api from '../components/Api.js';
-// import './index.css';
+import './index.css';
 
 
 
