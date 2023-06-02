@@ -7,7 +7,7 @@ import UserInfo from '../components/userInfo.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupDeleteCard from '../components/PopupDeleteCard.js';
 import Api from '../components/Api.js';
-// import './index.css';
+import './index.css';
 
 const editButton = document.querySelector('.profile__edit-button');
 const addButton  = document.querySelector('.profile__add-button');
